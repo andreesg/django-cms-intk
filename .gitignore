@@ -2,3 +2,5 @@
 config/*
 aldryn_cms/settings.py
 manage.py
+media/*
+static/*
