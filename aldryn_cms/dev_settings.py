@@ -151,14 +151,6 @@ INSTALLED_APPS = (
     'aldryn_cms',
 	#new apps
 	'media_tree',
-	#'cmsplugin_events',
-	#'media_tree.contrib.media_extensions.images.focal_point',
-	#'media_tree.contrib.media_extensions.zipfiles',
-	#'media_tree.contrib.cms_plugins',
-	#'media_tree.contrib.cms_plugins.media_tree_listing',
-	#'media_tree.contrib.cms_plugins.media_tree_image',
-	#'media_tree.contrib.cms_plugins.media_tree_slideshow',
-	#'media_tree.contrib.cms_plugins.media_tree_gallery',
 	'aldryn_blog',
 	'aldryn_common',
 	'standard_form',
@@ -184,17 +176,17 @@ HAYSTACK_CONNECTIONS = {
         'default': {
                 'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
                 'URL': 'http://127.0.0.1:9200/',
-                'INDEX_NAME': 'aldryn_haystack',
+                'INDEX_NAME': 'haystack',
         },
         'en': {
                 'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
                 'URL': 'http://127.0.0.1:9200/',
-                'INDEX_NAME': 'aldryn_haystack',
+                'INDEX_NAME': 'haystack',
         },
         'nl': {
                 'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
                 'URL': 'http://127.0.0.1:9200/',
-                'INDEX_NAME': 'aldryn_haystack',
+                'INDEX_NAME': 'haystack',
         },
 }
 
@@ -203,6 +195,8 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 MEDIA_TREE_MEDIA_BACKENDS = (
     'media_tree.contrib.media_backends.easy_thumbnails.EasyThumbnailsBackend',
 )
+
+ALDRYN_BLOG_SEARCH = True
 
 LANGUAGES = (
     ## Customize this
@@ -246,11 +240,6 @@ CMS_TEMPLATES = (
 CMS_PERMISSION = True
 
 CMS_PLACEHOLDER_CONF = {}
-
-#DATABASES = {
-#    'default':
-#        {'ENGINE': 'django.db.backends.sqlite3', 'NAME': '/home/andre/aldryn/project.db', 'HOST': 'localhost', 'USER': '', 'PASSWORD': '', 'PORT': ''}
-#}
 
 THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.colorspace',
