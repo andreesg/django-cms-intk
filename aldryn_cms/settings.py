@@ -119,8 +119,6 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-	#'aldryn_blog',
-	#'aldryn_common',
     'djangocms_admin_style',
     'djangocms_text_ckeditor',
     'django.contrib.auth',
@@ -151,14 +149,13 @@ INSTALLED_APPS = (
     'aldryn_cms',
 	#new apps
 	'media_tree',
-	#'cmsplugin_events',
 	#'media_tree.contrib.media_extensions.images.focal_point',
-	#'media_tree.contrib.media_extensions.zipfiles',
-	#'media_tree.contrib.cms_plugins',
-	#'media_tree.contrib.cms_plugins.media_tree_listing',
-	#'media_tree.contrib.cms_plugins.media_tree_image',
-	#'media_tree.contrib.cms_plugins.media_tree_slideshow',
-	#'media_tree.contrib.cms_plugins.media_tree_gallery',
+        #'media_tree.contrib.media_extensions.zipfiles',
+        #'media_tree.contrib.cms_plugins',
+        #'media_tree.contrib.cms_plugins.media_tree_listing',
+        #'media_tree.contrib.cms_plugins.media_tree_image',
+        #'media_tree.contrib.cms_plugins.media_tree_slideshow',
+        #'media_tree.contrib.cms_plugins.media_tree_gallery',
 	'aldryn_blog',
 	'aldryn_common',
 	'standard_form',
@@ -247,11 +244,6 @@ CMS_PERMISSION = True
 
 CMS_PLACEHOLDER_CONF = {}
 
-#DATABASES = {
-#    'default':
-#        {'ENGINE': 'django.db.backends.sqlite3', 'NAME': '/home/andre/aldryn/project.db', 'HOST': 'localhost', 'USER': '', 'PASSWORD': '', 'PORT': ''}
-#}
-
 THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.colorspace',
     'easy_thumbnails.processors.autocrop',
@@ -260,14 +252,34 @@ THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.filters',
 )
 
+#
+# MySQL db if needed
+#
+
+#DATABASES = {
+#	'default': {
+#		'ENGINE': 'django.db.backends.mysql',
+#		'NAME': 'aldryn',
+#		'USER': 'root',
+#		'PASSWORD':'ernesto',
+#		'HOST':'127.0.0.1',
+#		'PORT':'3306',
+#	}
+#}
+
+
+#
+# PostgreSQL db
+#
+
 DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.mysql',
-		'NAME': 'aldryn',
-		'USER': 'root',
-		'PASSWORD':'ernesto',
-		'HOST':'127.0.0.1',
-		'PORT':'3306',
-	}
+        'default': {
+                'ENGINE' : 'django.db.backends.postgresql_psycopg2',
+                'NAME': 'aldryn_db',
+                'USER': 'ernesto',
+                'PASSWORD':'ernesto',
+                'HOST': 'localhost',
+                'PORT': '',
+        }
 }
 
