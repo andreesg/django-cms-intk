@@ -59,13 +59,12 @@
             {% endblock langnav %}
 
             {% block quicksearch %}
-            <form action="/search/" method="post" class="form form-search">
+            <form action="/search/" method="get" class="form form-search">
                 <fieldset>
-                    {% csrf_token %}
                     <ol>
                         <li>
                             <label>{% trans "Search" %}</label>
-                            <div class="field"><input type="search" class="input-text" placeholder="{% trans 'Search...' %}" /></div>
+                            <div class="field"><input type="search" class="input-text" placeholder="{% trans 'Search...' %}" name="q"/></div>
                         </li>
                     </ol>
                 </fieldset>
