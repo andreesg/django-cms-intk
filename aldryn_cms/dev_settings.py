@@ -132,6 +132,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.messages',
     	'djangocms_text_ckeditor',
+	#'polls',
+	#'djangocms_polls',
 	'cms',
     'mptt',
     'menus',
@@ -166,6 +168,9 @@ INSTALLED_APPS = (
 	'filer',
 	'taggit',
 	'easy_thumbnails',
+	'polls',
+	'djangocms_polls',
+	#'aldryn_rich_page'
 )
 
 HAYSTACK_ROUTERS = ["aldryn_search.router.LanguageRouter",]
@@ -196,7 +201,7 @@ MEDIA_TREE_MEDIA_BACKENDS = (
     'media_tree.contrib.media_backends.easy_thumbnails.EasyThumbnailsBackend',
 )
 
-ALDRYN_BLOG_SEARCH = True
+#ALDRYN_BLOG_SEARCH = True
 
 LANGUAGES = (
     ## Customize this
