@@ -149,13 +149,6 @@ INSTALLED_APPS = (
     'aldryn_cms',
 	#new apps
 	'media_tree',
-	#'media_tree.contrib.media_extensions.images.focal_point',
-        #'media_tree.contrib.media_extensions.zipfiles',
-        #'media_tree.contrib.cms_plugins',
-        #'media_tree.contrib.cms_plugins.media_tree_listing',
-        #'media_tree.contrib.cms_plugins.media_tree_image',
-        #'media_tree.contrib.cms_plugins.media_tree_slideshow',
-        #'media_tree.contrib.cms_plugins.media_tree_gallery',
 	'aldryn_blog',
 	'aldryn_common',
 	'standard_form',
@@ -282,4 +275,7 @@ DATABASES = {
                 'PORT': '',
         }
 }
+
+EMAIL_HOST = 'localhost'
+#EMAIL_PORT = 1025
 
