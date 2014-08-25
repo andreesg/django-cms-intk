@@ -97,8 +97,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
-    'cms.middleware.language.LanguageCookieMiddleware',
-    'djangocms_ckeditor_filer.middleware.ThumbnailMiddleware'
+    'cms.middleware.language.LanguageCookieMiddleware'
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -123,6 +122,7 @@ INSTALLED_APPS = (
 	#'aldryn_blog',
 	#'aldryn_common',
     'djangocms_admin_style',
+    'djangocms_text_ckeditor',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -131,8 +131,8 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     'django.contrib.messages',
-    'djangocms_text_ckeditor',
-    #'polls',
+    	'djangocms_text_ckeditor',
+	#'polls',
 	#'djangocms_polls',
 	'cms',
     'mptt',
@@ -170,21 +170,12 @@ INSTALLED_APPS = (
 	'easy_thumbnails',
 	'polls',
 	'djangocms_polls',
-    'cmsplugin_filer_file',
-    'cmsplugin_filer_folder',
-    'cmsplugin_filer_image',
-    'cmsplugin_filer_teaser',
-    'cmsplugin_filer_video',
-    'djangocms_ckeditor_filer',
-    'rich_page'
+	#'aldryn_rich_page'
 )
-
-CKEDITOR_SETTINGS = { 'language': '', 'skin': 'moono', 'toolbar': 'CMS', 'contentsCss': '/static/css/fonts.css', 'toolbar_CMS': [ ['Undo', 'Redo'],['cmsplugins', '-', 'ShowBlocks'], ['Format', 'Styles'], ['TextColor', 'BGColor', '-', 'PasteText', 'PasteFromWord'], ['Maximize', ''], '/', ['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', '-', 'RemoveFormat'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight'], ['Link', 'Unlink'], ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table', 'Filer Image'], ['Source'] ], 'extraPlugins': 'filerimage', 'removePlugins': 'image' }
 
 HAYSTACK_ROUTERS = ["aldryn_search.router.LanguageRouter",]
 
 ALDRYN_SEARCH_REGISTER_APPHOOK = True
-TEXT_SAVE_IMAGE_FUNCTION='cmsplugin_filer_image.integrations.ckeditor.create_image_plugin'
 
 HAYSTACK_CONNECTIONS = {
         'default': {
