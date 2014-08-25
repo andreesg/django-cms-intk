@@ -153,6 +153,7 @@ INSTALLED_APPS = (
     'aldryn_cms',
 	#new apps
 	'media_tree',
+    'aldryn_blog',
 	'aldryn_common',
 	'standard_form',
 	'spurl',
@@ -169,6 +170,7 @@ INSTALLED_APPS = (
 	'easy_thumbnails',
 	'polls',
 	'djangocms_polls',
+    'rich_page',
 	#'aldryn_rich_page'
 )
 
