@@ -254,14 +254,18 @@ THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.filters',
 )
 
+#
+# PostgreSQL db
+#
+
 DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.mysql',
-		'NAME': 'aldryn',
-		'USER': 'root',
-		'PASSWORD':'ernesto',
-		'HOST':'127.0.0.1',
-		'PORT':'3306',
-	}
+        'default': {
+                'ENGINE' : 'django.db.backends.postgresql_psycopg2',
+                'NAME': 'db_dev',
+                'USER': 'ernesto',
+                'PASSWORD':'ernesto',
+                'HOST': 'localhost',
+                'PORT': '',
+        }
 }
 

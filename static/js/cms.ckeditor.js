@@ -23,7 +23,6 @@ $(document).ready(function () {
 				'/',
 				['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
 				['JustifyLeft', 'JustifyCenter', 'JustifyRight'],
-				['HorizontalRule'],
 				['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table'],
 				['Source']
 			],
@@ -36,7 +35,6 @@ $(document).ready(function () {
 				'/',
 				['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
 				['JustifyLeft', 'JustifyCenter', 'JustifyRight'],
-				['HorizontalRule'],
 				['Link', 'Unlink'],
 				['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table'],
 				['Source']
@@ -48,23 +46,22 @@ $(document).ready(function () {
 		},
 
 		init: function (container, options, settings) {
-			if ($('#' + container).length > 0) {
-				this.container = $('#' + container);
-				// add additional settings to options
-				this.options.toolbar = settings.toolbar;
-				this.options = $.extend(false, {
-					'settings': settings
-				}, this.options, options);
+			this.container = $('#' + container);
 
-				// add additional plugins (autoloads plugins.js)
-				CKEDITOR.plugins.addExternal('cmsplugins', settings.static_url + 'ckeditor_plugins/cmsplugins/');
+			// add additional settings to options
+			this.options.toolbar = settings.toolbar;
+			this.options = $.extend(true, {
+				'settings': settings
+			}, this.options, options);
 
-				// render ckeditor
-				this.editor = CKEDITOR.replace(container, this.options);
+			// add additional plugins (autoloads plugins.js)
+			CKEDITOR.plugins.addExternal('cmsplugins', settings.static_url + 'ckeditor_plugins/cmsplugins/');
 
-				// add additional styling
-				CKEDITOR.on('instanceReady', $.proxy(CMS.CKEditor, 'setup'));
-			}
+			// render ckeditor
+			this.editor = CKEDITOR.replace(container, this.options);
+
+			// add additional styling
+			CKEDITOR.on('instanceReady', $.proxy(CMS.CKEditor, 'setup'));
 		},
 
 		// setup is called after ckeditor has been initialized
