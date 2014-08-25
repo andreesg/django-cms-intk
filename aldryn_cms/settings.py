@@ -164,12 +164,6 @@ INSTALLED_APPS = (
 	'filer',
 	'taggit',
 	'easy_thumbnails',
-        'cmsplugin_filer_file',
-        'cmsplugin_filer_folder',
-        'cmsplugin_filer_image',
-        'cmsplugin_filer_teaser',
-        'cmsplugin_filer_video',
-        'djangocms_ckeditor_filer',
 )
 
 HAYSTACK_ROUTERS = ["aldryn_search.router.LanguageRouter",]
@@ -195,11 +189,7 @@ HAYSTACK_CONNECTIONS = {
 }
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
-ALDRYN_BLOG_SEARCH = True
 
-CKEDITOR_SETTINGS = { 'language': '', 'skin': 'moono', 'toolbar': 'CMS', 'contentsCss': '/static/css/fonts.css', 'toolbar_CMS': [ ['Undo', 'Redo'], ['ShowBlocks'], ['Format', 'Styles'], ['TextColor', 'BGColor', '-', 'PasteText', 'PasteFromWord'], ['Maximize', ''], '/', ['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', '-', 'RemoveFormat'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight'], ['Link', 'Unlink'], ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table', 'Filer Image'], ['Source'] ], 'extraPlugins': 'filerimage', 'removePlugins': 'image' }
-
-TEXT_SAVE_IMAGE_FUNCTION='cmsplugin_filer_image.integrations.ckeditor.create_image_plugin'
 MEDIA_TREE_MEDIA_BACKENDS = (
     'media_tree.contrib.media_backends.easy_thumbnails.EasyThumbnailsBackend',
 )
@@ -285,4 +275,7 @@ DATABASES = {
                 'PORT': '',
         }
 }
+
+EMAIL_HOST = 'localhost'
+#EMAIL_PORT = 1025
 
