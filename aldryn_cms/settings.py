@@ -176,7 +176,7 @@ INSTALLED_APPS = (
     'cmsplugin_filer_teaser',
     'cmsplugin_filer_video',
     'djangocms_ckeditor_filer',
-    #'aldryn_rich_page'
+    'rich_page'
 )
 
 CKEDITOR_SETTINGS = { 'language': '', 'skin': 'moono', 'toolbar': 'CMS', 'contentsCss': '/static/css/fonts.css', 'toolbar_CMS': [ ['Undo', 'Redo'],['cmsplugins', '-', 'ShowBlocks'], ['Format', 'Styles'], ['TextColor', 'BGColor', '-', 'PasteText', 'PasteFromWord'], ['Maximize', ''], '/', ['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', '-', 'RemoveFormat'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight'], ['Link', 'Unlink'], ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table', 'Filer Image'], ['Source'] ], 'extraPlugins': 'filerimage', 'removePlugins': 'image' }
