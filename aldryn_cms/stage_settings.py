@@ -119,6 +119,8 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+	#'aldryn_blog',
+	#'aldryn_common',
     'djangocms_admin_style',
     'djangocms_text_ckeditor',
     'django.contrib.auth',
@@ -130,6 +132,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.messages',
     	'djangocms_text_ckeditor',
+	#'polls',
+	#'djangocms_polls',
 	'cms',
     'mptt',
     'menus',
@@ -149,7 +153,7 @@ INSTALLED_APPS = (
     'aldryn_cms',
 	#new apps
 	'media_tree',
-	'aldryn_blog',
+    'aldryn_blog',
 	'aldryn_common',
 	'standard_form',
 	'spurl',
@@ -164,6 +168,10 @@ INSTALLED_APPS = (
 	'filer',
 	'taggit',
 	'easy_thumbnails',
+	'polls',
+	'djangocms_polls',
+    'rich_page',
+	#'aldryn_rich_page'
 )
 
 HAYSTACK_ROUTERS = ["aldryn_search.router.LanguageRouter",]
@@ -174,17 +182,17 @@ HAYSTACK_CONNECTIONS = {
         'default': {
                 'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
                 'URL': 'http://127.0.0.1:9200/',
-                'INDEX_NAME': 'aldryn_haystack',
+                'INDEX_NAME': 'haystack',
         },
         'en': {
                 'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
                 'URL': 'http://127.0.0.1:9200/',
-                'INDEX_NAME': 'aldryn_haystack',
+                'INDEX_NAME': 'haystack',
         },
         'nl': {
                 'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
                 'URL': 'http://127.0.0.1:9200/',
-                'INDEX_NAME': 'aldryn_haystack',
+                'INDEX_NAME': 'haystack',
         },
 }
 
@@ -193,6 +201,8 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 MEDIA_TREE_MEDIA_BACKENDS = (
     'media_tree.contrib.media_backends.easy_thumbnails.EasyThumbnailsBackend',
 )
+
+#ALDRYN_BLOG_SEARCH = True
 
 LANGUAGES = (
     ## Customize this
@@ -246,36 +256,17 @@ THUMBNAIL_PROCESSORS = (
 )
 
 #
-# MySQL db if needed
-#
-
-#DATABASES = {
-#	'default': {
-#		'ENGINE': 'django.db.backends.mysql',
-#		'NAME': 'aldryn',
-#		'USER': 'root',
-#		'PASSWORD':'ernesto',
-#		'HOST':'127.0.0.1',
-#		'PORT':'3306',
-#	}
-#}
-
-
-#
 # PostgreSQL db
 #
 
 DATABASES = {
         'default': {
                 'ENGINE' : 'django.db.backends.postgresql_psycopg2',
-                'NAME': 'aldryn_db',
+                'NAME': 'db_dev',
                 'USER': 'ernesto',
                 'PASSWORD':'ernesto',
                 'HOST': 'localhost',
                 'PORT': '',
         }
 }
-
-EMAIL_HOST = 'localhost'
-#EMAIL_PORT = 1025
 
