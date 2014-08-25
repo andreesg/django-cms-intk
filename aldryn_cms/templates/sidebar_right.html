@@ -8,6 +8,12 @@
     <div class="medium-17 column">
         {% block content %}
         {% with 660 as width %}{% placeholder content %}{% endwith %}
+
+        <h1>{% render_model request.current_page "title" "page_title,menu_title" %}</h1>
+        
+        <h3>{% render_model request.current_page.richpage "lead_in" %}</h3>
+        <h3>{% render_model request.current_page.richpage "body" %}</h3>
+
         {% endblock content %}
     </div>
     <aside class="medium-7 column sidebar">
