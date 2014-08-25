@@ -1,6 +1,6 @@
 *.pyc
 config/*
-aldryn_cms/settings.py
+settings.py
 manage.py
 media/*
 static/*
