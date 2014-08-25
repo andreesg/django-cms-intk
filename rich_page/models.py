@@ -9,7 +9,7 @@ from cms.extensions import PageExtension
 from cms.extensions.extension_pool import extension_pool
 
 class RichPage(PageExtension):
-	key_visual = FilerImageField(verbose_name=_('Key Visual'), blank=True, null=True)
+	key_visual = FilerImageField(verbose_name=_('Lead Image'), blank=True, null=True)
 	lead_in = HTMLField(_('Lead-in'),
                         help_text=_('Will be displayed in lists, and at the start of the detail page (in bold)'), default="Your lead in text")
 

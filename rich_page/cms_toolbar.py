@@ -46,16 +46,13 @@ class RichPageToolbar(CMSToolbar):
             menu.add_modal_item(_('Create Page'), url=page_url)
             menu.add_modal_item(_('Create Sub Page'), url=add_url_parameters(page_url, sub_page_params))
 
-            menu.add_break(PAGE_MENU_BREAK)
-
             try:
                 rich_page = RichPage.objects.get(extended_object_id=self.page.id)
             except RichPage.DoesNotExist:
                 rich_page = None
 
-            if rich_page:
-                menu.add_modal_item(_('Edit Article'), url=reverse('admin:rich_page_richpage_change', args=(rich_page.pk,)))
-            else:
+            if not rich_page:
+                menu.add_break(PAGE_MENU_BREAK)
                 menu.add_modal_item(_('Add Article'), url=rich_page_add_url)
                 menu.add_modal_item(_('Add Collection'), url=rich_page_add_url)
 
