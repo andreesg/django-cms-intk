@@ -18,4 +18,12 @@ class RichPage(PageExtension):
 	
 	tags = TaggableManager(blank=True)
 
+def _get_pages_by_filter(obj):
+    pages = obj.get_children()
+    return pages
+
+Page._get_pages_by_filter = _get_pages_by_filter
+Page.get_pages_by_filter = property(lambda u: u._get_pages_by_filter)
+
+
 extension_pool.register(RichPage)
