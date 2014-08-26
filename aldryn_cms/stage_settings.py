@@ -153,7 +153,6 @@ INSTALLED_APPS = (
     'aldryn_cms',
 	#new apps
 	'media_tree',
-    'aldryn_blog',
 	'aldryn_common',
 	'standard_form',
 	'spurl',
@@ -262,11 +261,14 @@ THUMBNAIL_PROCESSORS = (
 DATABASES = {
         'default': {
                 'ENGINE' : 'django.db.backends.postgresql_psycopg2',
-                'NAME': 'db_dev',
+                'NAME': 'aldryn_db',
                 'USER': 'ernesto',
                 'PASSWORD':'ernesto',
                 'HOST': 'localhost',
                 'PORT': '',
         }
 }
+
+EMAIL_HOST = 'localhost'
+
 
