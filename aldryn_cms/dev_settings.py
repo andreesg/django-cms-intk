@@ -170,6 +170,7 @@ INSTALLED_APPS = (
 	'easy_thumbnails',
 	'polls',
 	'djangocms_polls',
+	'rich_collection',
     'rich_page',
 	#'aldryn_rich_page'
 )
