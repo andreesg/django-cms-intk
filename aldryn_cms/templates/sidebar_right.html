@@ -38,13 +38,19 @@
                 {% endfor %}
             </ul>
         {% else %}
-            {% with 660 as width %}{% placeholder content %}{% endwith %}
+            
             
             {% if request.current_page.richpage.key_visual_id %}<p class="blog-visual"><img src="{% thumbnail request.current_page.richpage.key_visual 660x200 crop subject_location=request.current_page.richpage.key_visual.subject_location %}" alt="" /></p>{% endif %}
             
             <p>
             <h3>{% render_model request.current_page.richpage "lead_in" %}</h3>
             <p>{% render_model request.current_page.richpage "body" %}</p>
+            
+            <div class="row">
+            {% if request.current_page.richslideshow %}
+                {% with 660 as width %}{% render_placeholder request.current_page.richpage.slideshow %}{% endwith %}
+            {% endif %}
+            </div>
         {% endif %}
 
         

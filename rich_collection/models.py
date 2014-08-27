@@ -43,7 +43,4 @@ class RichCollection(PageExtension):
 
         return pages
 
-#RichCollection._get_richpages_by_filter = _get_richpages_by_filter
-#RichCollection.get_richpages_by_filter = property(lambda u: u._get_richpages_by_filter)
-
 extension_pool.register(RichCollection)
