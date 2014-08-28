@@ -89,32 +89,3 @@ class RichPageToolbar(CMSToolbar):
                 rich_collection_change_url = reverse(RICHCOLLECTION_MENU_CHANGE, args=(rich_collection.pk,)) + '?extended_object=%s' % self.page.pk
                 menu.add_modal_item(_('Remove Collection'), url=rich_collection_change_url)
 
-
-        # # check global permissions if CMS_PERMISSIONS is active
-        # if get_cms_setting('PERMISSION'):
-        #     has_global_current_page_change_permission = has_page_change_permission(self.request)
-        # else:
-        #     has_global_current_page_change_permission = False
-        #     # check if user has page edit permission
-        # can_change = self.request.current_page and self.request.current_page.has_change_permission(self.request)
-        # if has_global_current_page_change_permission or can_change:
-        #     try:
-        #         rich_page = RichPage.objects.get(extended_object_id=self.page.id)
-        #     except RichPage.DoesNotExist:
-        #         rich_page = None
-        #     try:
-        #         if rich_page:
-        #             url = reverse('admin:rich_page_richpage_change', args=(rich_page.pk,))
-        #         else:
-        #             url = reverse('admin:rich_page_richpage_add') + '?extended_object=%s' % self.page.pk
-        #     except NoReverseMatch:
-        #         # not in urls
-        #         pass
-        #     else:
-        #         not_edit_mode = not self.toolbar.edit_mode
-        #         menu = self.toolbar.get_or_create_menu('rich-page-new', _('Rich Page Content'))
-        #         if rich_page:
-        #         	menu.add_modal_item(_('Edit content'), url=url)
-        #         else:
-        #         	menu.add_modal_item(_('Add content'), url=url)
-

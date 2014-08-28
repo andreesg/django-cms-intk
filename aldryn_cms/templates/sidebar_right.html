@@ -39,7 +39,6 @@
             </ul>
         {% else %}
             
-            
             {% if request.current_page.richpage.key_visual_id %}<p class="blog-visual"><img src="{% thumbnail request.current_page.richpage.key_visual 660x200 crop subject_location=request.current_page.richpage.key_visual.subject_location %}" alt="" /></p>{% endif %}
             
             <p>
@@ -51,6 +50,7 @@
                 {% with 660 as width %}{% render_placeholder request.current_page.richpage.slideshow %}{% endwith %}
             {% endif %}
             </div>
+
         {% endif %}
 
         
@@ -58,14 +58,12 @@
     <aside class="medium-7 column sidebar">
         {% if request.current_page.richcollection %}
 
-            This is a collection.
 
         {% elif request.current_page.richpage %}
-
-            This is an article.
+            
 
         {% else %}
-            This is nothing yet.
+            
         {% endif %}
     </aside>
 </div>
