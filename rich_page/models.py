@@ -6,12 +6,12 @@ from djangocms_text_ckeditor.fields import HTMLField
 from cms.models.fields import PlaceholderField
 from taggit.managers import TaggableManager
 from cms.models.pagemodel import Page
-from cms.extensions import PageExtension
+from cms.extensions import PageExtension, TitleExtension
 from cms.extensions.extension_pool import extension_pool
 from aldryn_gallery.cms_plugins import GalleryCMSPlugin, SlideCMSPlugin, SlideFolderCMSPlugin
 from django.conf import settings
 
-class RichPage(PageExtension):
+class RichPage(TitleExtension):
     key_visual = FilerImageField(verbose_name=_('Lead Image'), blank=True, null=True)
     lead_in = HTMLField(_('Lead-in'),
                         help_text=_('Will be displayed in lists, and at the start of the detail page (in bold)'), default="Your lead in text")
@@ -23,6 +23,7 @@ class RichPage(PageExtension):
 
     slideshow = PlaceholderField('richpage_slideshow', related_name='richpage_slideshow')
 
+
 class RichSlideshow(PageExtension):
     slideshow_title = models.CharField(max_length=100, default='Slideshow title')
 
@@ -32,7 +33,8 @@ class RichSlideshow(PageExtension):
         if not self.pk:
             super(RichSlideshow, self).save(*args, **kwargs)
             page = self.extended_object
-            placeholder = page.richpage.slideshow
+
+            placeholder = page.get_title_obj().richpage.slideshow
 
             language = settings.LANGUAGES[0][0]
 
