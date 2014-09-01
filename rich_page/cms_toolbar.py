@@ -128,6 +128,8 @@ class RichPageToolbar(CMSToolbar):
                 menu.add_modal_item(_('Edit Article'), url=rich_page_change_url)
                 menu.add_modal_item(_('Remove Article'), url=rich_page_delete_url)
 
+                menu.add_break(PAGE_MENU_BREAK)
+
                 if rich_slideshow:
                     rich_slideshow_change_url = reverse(RICHSLIDESHOW_MENU_CHANGE, args=(rich_slideshow.pk,)) + '?extended_object=%s' % self.page.pk
                     menu.add_modal_item(_('Remove Slideshow'), url=rich_slideshow_change_url)
