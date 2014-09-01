@@ -55,7 +55,15 @@
     </div>
     <aside class="medium-7 column sidebar">
         
-        
+        {% if request.current_page.richcollection %}
+
+
+        {% elif request.current_page.get_title_obj.richpage %}
+            
+
+        {% else %}
+            
+        {% endif %}
     </aside>
 </div>
 {% endblock richpage_content %}

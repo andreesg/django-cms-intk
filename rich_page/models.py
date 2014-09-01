@@ -16,10 +16,10 @@ from django.conf import settings
 class RichPage(TitleExtension):
     key_visual = FilerImageField(verbose_name=_('Lead Image'), blank=True, null=True)
     lead_in = HTMLField(_('Lead-in'),
-                        help_text=_('Will be displayed in lists, and at the start of the detail page (in bold)'), default="Your lead in text")
+                        help_text=_('Will be displayed as short description of the article.'), default="Your lead in text")
 
     body = HTMLField(_('Body'),
-                        help_text=_('Will be displayed in full page'), default="Your body text")
+                        help_text=_('Content of the article.'), default="Your body text")
     
     tags = TaggableManager(blank=True)
 
@@ -41,10 +41,13 @@ class RichSlideshow(PageExtension):
             language = settings.LANGUAGES[0][0]
 
             gallery_plugin = add_plugin(placeholder, GalleryCMSPlugin, language)
-            data = {'folder_id': 1}
+            
+            data = {'folder_id': 1} # TODO add new folder for each slideshow
+            
             child_plugin = add_plugin(placeholder, SlideFolderCMSPlugin, language, target=gallery_plugin, **data)
         else:
             super(RichSlideshow, self).save(*args, **kwargs)
+
 
 extension_pool.register(RichPage)
 extension_pool.register(RichSlideshow)

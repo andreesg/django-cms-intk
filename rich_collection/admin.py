@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.contrib import admin
 from cms.extensions import PageExtensionAdmin
 from cms.admin.pageadmin import PageAdmin
