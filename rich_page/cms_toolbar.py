@@ -24,8 +24,8 @@ RICHPAGE_MENU_CHANGE = 'admin:rich_page_richpage_change'
 RICHPAGE_MENU_DELETE = 'admin:rich_page_richpage_delete'
 
 # Rich Slideshow
-RICHSLIDESHOW_MENU_ADD = 'admin:rich_page_richslideshow_add'
-RICHSLIDESHOW_MENU_CHANGE = 'admin:rich_page_richslideshow_change'
+#RICHSLIDESHOW_MENU_ADD = 'admin:rich_page_richslideshow_add'
+#RICHSLIDESHOW_MENU_CHANGE = 'admin:rich_page_richslideshow_change'
 
 @toolbar_pool.register
 class RichPageToolbar(CMSToolbar):
@@ -72,7 +72,7 @@ class RichPageToolbar(CMSToolbar):
             rich_page_add_url = reverse(RICHPAGE_MENU_ADD) + '?extended_object=%s' % self.title_page.pk
             
             # Rich Slideshow
-            rich_slideshow_add_url = reverse(RICHSLIDESHOW_MENU_ADD) + '?extended_object=%s' % self.page.pk
+            #rich_slideshow_add_url = reverse(RICHSLIDESHOW_MENU_ADD) + '?extended_object=%s' % self.page.pk
 
             
             #
@@ -90,10 +90,10 @@ class RichPageToolbar(CMSToolbar):
                 rich_page = None
 
 
-            try:
-                rich_slideshow = RichSlideshow.objects.get(extended_object_id=self.page.id)
-            except RichSlideshow.DoesNotExist:
-                rich_slideshow = None
+            #try:
+            #    rich_slideshow = RichSlideshow.objects.get(extended_object_id=self.page.id)
+            #except RichSlideshow.DoesNotExist:
+            #    rich_slideshow = None
 
             if not rich_page:
                 menu.add_break(PAGE_MENU_BREAK)
@@ -116,11 +116,11 @@ class RichPageToolbar(CMSToolbar):
 
                 menu.add_break(PAGE_MENU_BREAK)
 
-                if rich_slideshow:
-                    rich_slideshow_change_url = reverse(RICHSLIDESHOW_MENU_CHANGE, args=(rich_slideshow.pk,)) + '?extended_object=%s' % self.page.pk
-                    menu.add_modal_item(_('Delete slideshow'), url=rich_slideshow_change_url)
-                else:
-                    menu.add_modal_item(_('Add slideshow'), url=rich_slideshow_add_url)
+                #if rich_slideshow:
+                #    rich_slideshow_change_url = reverse(RICHSLIDESHOW_MENU_CHANGE, args=(rich_slideshow.pk,)) + '?extended_object=%s' % self.page.pk
+                #    menu.add_modal_item(_('Delete slideshow'), url=rich_slideshow_change_url)
+                #else:
+                #    menu.add_modal_item(_('Add slideshow'), url=rich_slideshow_add_url)
                 
 
                 
