@@ -21,7 +21,7 @@
                                 <img src="{% thumbnail child.get_title_obj.richpage.key_visual 60x60 crop subject_location=child.get_title_obj.richpage.key_visual.subject_location %}" alt="" />
                             </p>
                             {% endif %}
-                            <h3><a href="{{ child.get_title_obj.get_absolute_url }}">{% render_model child "title" "title" %}</a></h3>
+                            <h3><a href="{{ child.get_absolute_url }}">{% render_model child "title" "title" %}</a></h3>
                             {% block blog_meta %}
                                 <p class="blog-meta">
                                     <span class="blog-date">{{ child.publication_date|date:"M/d" }}</span>
