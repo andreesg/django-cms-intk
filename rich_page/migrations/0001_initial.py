@@ -12,17 +12,30 @@ class Migration(SchemaMigration):
         db.create_table(u'rich_page_richpage', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('public_extension', self.gf('django.db.models.fields.related.OneToOneField')(related_name='draft_extension', unique=True, null=True, to=orm['rich_page.RichPage'])),
-            ('extended_object', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.Page'], unique=True)),
+            ('extended_object', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.Title'], unique=True)),
             ('key_visual', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['filer.Image'], null=True, blank=True)),
-            ('lead_in', self.gf('djangocms_text_ckeditor.fields.HTMLField')()),
-            ('body', self.gf('djangocms_text_ckeditor.fields.HTMLField')()),
+            ('lead_in', self.gf('djangocms_text_ckeditor.fields.HTMLField')(default='Your lead in text')),
+            ('body', self.gf('djangocms_text_ckeditor.fields.HTMLField')(default='Your body text')),
+            ('slideshow', self.gf('django.db.models.fields.related.ForeignKey')(related_name='richpage_slideshow', null=True, to=orm['cms.Placeholder'])),
         ))
         db.send_create_signal(u'rich_page', ['RichPage'])
+
+        # Adding model 'RichSlideshow'
+        db.create_table(u'rich_page_richslideshow', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('public_extension', self.gf('django.db.models.fields.related.OneToOneField')(related_name='draft_extension', unique=True, null=True, to=orm['rich_page.RichSlideshow'])),
+            ('extended_object', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.Page'], unique=True)),
+            ('slideshow_title', self.gf('django.db.models.fields.CharField')(default='Slideshow title', max_length=100)),
+        ))
+        db.send_create_signal(u'rich_page', ['RichSlideshow'])
 
 
     def backwards(self, orm):
         # Deleting model 'RichPage'
         db.delete_table(u'rich_page_richpage')
+
+        # Deleting model 'RichSlideshow'
+        db.delete_table(u'rich_page_richslideshow')
 
 
     models = {
@@ -93,6 +106,25 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'slot': ('django.db.models.fields.CharField', [], {'max_length': '50', 'db_index': 'True'})
         },
+        'cms.title': {
+            'Meta': {'unique_together': "(('language', 'page'),)", 'object_name': 'Title'},
+            'creation_date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
+            'has_url_overwrite': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'language': ('django.db.models.fields.CharField', [], {'max_length': '15', 'db_index': 'True'}),
+            'menu_title': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'meta_description': ('django.db.models.fields.TextField', [], {'max_length': '155', 'null': 'True', 'blank': 'True'}),
+            'page': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'title_set'", 'to': "orm['cms.Page']"}),
+            'page_title': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'path': ('django.db.models.fields.CharField', [], {'max_length': '255', 'db_index': 'True'}),
+            'published': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'publisher_is_draft': ('django.db.models.fields.BooleanField', [], {'default': 'True', 'db_index': 'True'}),
+            'publisher_public': ('django.db.models.fields.related.OneToOneField', [], {'related_name': "'publisher_draft'", 'unique': 'True', 'null': 'True', 'to': "orm['cms.Title']"}),
+            'publisher_state': ('django.db.models.fields.SmallIntegerField', [], {'default': '0', 'db_index': 'True'}),
+            'redirect': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '255'}),
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '255'})
+        },
         u'contenttypes.contenttype': {
             'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
             'app_label': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
@@ -146,12 +178,20 @@ class Migration(SchemaMigration):
         },
         u'rich_page.richpage': {
             'Meta': {'object_name': 'RichPage'},
-            'body': ('djangocms_text_ckeditor.fields.HTMLField', [], {}),
-            'extended_object': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.Page']", 'unique': 'True'}),
+            'body': ('djangocms_text_ckeditor.fields.HTMLField', [], {'default': "'Your body text'"}),
+            'extended_object': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.Title']", 'unique': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'key_visual': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['filer.Image']", 'null': 'True', 'blank': 'True'}),
-            'lead_in': ('djangocms_text_ckeditor.fields.HTMLField', [], {}),
-            'public_extension': ('django.db.models.fields.related.OneToOneField', [], {'related_name': "'draft_extension'", 'unique': 'True', 'null': 'True', 'to': u"orm['rich_page.RichPage']"})
+            'lead_in': ('djangocms_text_ckeditor.fields.HTMLField', [], {'default': "'Your lead in text'"}),
+            'public_extension': ('django.db.models.fields.related.OneToOneField', [], {'related_name': "'draft_extension'", 'unique': 'True', 'null': 'True', 'to': u"orm['rich_page.RichPage']"}),
+            'slideshow': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'richpage_slideshow'", 'null': 'True', 'to': "orm['cms.Placeholder']"})
+        },
+        u'rich_page.richslideshow': {
+            'Meta': {'object_name': 'RichSlideshow'},
+            'extended_object': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.Page']", 'unique': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'public_extension': ('django.db.models.fields.related.OneToOneField', [], {'related_name': "'draft_extension'", 'unique': 'True', 'null': 'True', 'to': u"orm['rich_page.RichSlideshow']"}),
+            'slideshow_title': ('django.db.models.fields.CharField', [], {'default': "'Slideshow title'", 'max_length': '100'})
         },
         u'sites.site': {
             'Meta': {'ordering': "(u'domain',)", 'object_name': 'Site', 'db_table': "u'django_site'"},
