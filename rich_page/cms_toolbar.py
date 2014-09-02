@@ -80,8 +80,8 @@ class RichPageToolbar(CMSToolbar):
             #
 
             menu = self.toolbar.get_or_create_menu('rich-page-new', _('Pages'), position=1)
-            menu.add_modal_item(_('New Page'), url=page_url)
-            menu.add_modal_item(_('New Sub Page'), url=add_url_parameters(page_url, sub_page_params))
+            #menu.add_modal_item(_('New Page'), url=page_url)
+            menu.add_modal_item(_('New Page'), url=add_url_parameters(page_url, sub_page_params))
             menu.add_modal_item(_('Delete page'), url=delete_page_url)
 
             try:
@@ -95,26 +95,26 @@ class RichPageToolbar(CMSToolbar):
             #except RichSlideshow.DoesNotExist:
             #    rich_slideshow = None
 
-            if not rich_page:
-                menu.add_break(PAGE_MENU_BREAK)
-                menu.add_modal_item(_('Add article'), url=rich_page_add_url)
+            #if not rich_page:
+            #    menu.add_break(PAGE_MENU_BREAK)
+            #    menu.add_modal_item(_('Add article'), url=rich_page_add_url)
 
             #
             # Check if the page has rich content or rich collection
             #
-            if rich_page:
-                menu.add_break(PAGE_MENU_BREAK)
+            # if rich_page:
+            #     menu.add_break(PAGE_MENU_BREAK)
                 
-                #
-                # Rich page urls
-                #
-                rich_page_change_url = reverse(RICHPAGE_MENU_CHANGE, args=(self.title_page.pk,)) + '?extended_object=%s' % self.title_page.pk
-                rich_page_delete_url = reverse(RICHPAGE_MENU_DELETE, args=(self.title_page.pk,)) + '?extended_object=%s' % self.title_page.pk
+            #     #
+            #     # Rich page urls
+            #     #
+            #     rich_page_change_url = reverse(RICHPAGE_MENU_CHANGE, args=(self.title_page.pk,)) + '?extended_object=%s' % self.title_page.pk
+            #     rich_page_delete_url = reverse(RICHPAGE_MENU_DELETE, args=(self.title_page.pk,)) + '?extended_object=%s' % self.title_page.pk
 
-                menu.add_modal_item(_('Edit article'), url=rich_page_change_url)
-                menu.add_modal_item(_('Delete article'), url=rich_page_delete_url)
+            #     menu.add_modal_item(_('Edit article'), url=rich_page_change_url)
+            #     menu.add_modal_item(_('Delete article'), url=rich_page_delete_url)
 
-                menu.add_break(PAGE_MENU_BREAK)
+            #     menu.add_break(PAGE_MENU_BREAK)
 
                 #if rich_slideshow:
                 #    rich_slideshow_change_url = reverse(RICHSLIDESHOW_MENU_CHANGE, args=(rich_slideshow.pk,)) + '?extended_object=%s' % self.page.pk
