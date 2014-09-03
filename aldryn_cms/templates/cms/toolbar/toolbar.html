@@ -116,7 +116,7 @@
 	<div class="cms_screenblock">
 		<div class="cms_screenblock-inner">
 			<h1>{% trans "This page has not yet been translated." %}</h1>
-			<p>{% trans "It is being redirected to:" %} <a href="{{ request.toolbar.redirect_url }}">{{ request.toolbar.redirect_url }}</a></p>
+			<!--<p>{% trans "Please" %}, <a href="{% url 'admin:cms_page_change' request.current_page.id %}?language={{ request.toolbar.language }}" data-rel="modal" data-on-close="REFRESH_PAGE">{% trans "add translation" %}</a></p>-->
 		</div>
 	</div>
 	{% endif %}

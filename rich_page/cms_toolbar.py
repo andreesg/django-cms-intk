@@ -30,7 +30,7 @@ RICHPAGE_MENU_DELETE = 'admin:rich_page_richpage_delete'
 @toolbar_pool.register
 class RichPageToolbar(CMSToolbar):
     def populate(self):
-
+        print "populate"
         # always use draft if we have a page
         self.page = get_page_draft(self.request.current_page)
 
@@ -40,15 +40,22 @@ class RichPageToolbar(CMSToolbar):
             # Remove default menu
             #
             self.page_menu = self.toolbar.get_or_create_menu('page')
+
             self.toolbar.remove_item(self.page_menu)
             return
 
         self.lang = get_language_from_request(self.request)
+        self.parent_page_id = self.page.parent_id 
 
         try:
             self.title_page = self.page.title_set.get(language=self.lang)
         except:
             # Nothing to do
+            #
+            # Remove default menu
+            #
+            self.page_menu = self.toolbar.get_or_create_menu('page')
+            self.toolbar.remove_item(self.page_menu)
             return
 
         #
@@ -69,9 +76,15 @@ class RichPageToolbar(CMSToolbar):
 
         if has_global_current_page_change_permission or can_change:
             # Page urls
+
             page_url = reverse(PAGE_MENU_ADD)
+
             delete_page_url = reverse(PAGE_MENU_DELETE, args=(self.page.pk,))
-            sub_page_params = {'edit': 1, 'position': 'last-child', 'target': self.page.pk}
+            
+            if not self.parent_page_id:
+                sub_page_params = {'edit': 1, 'position': 'last-child', 'target': self.page.pk}
+            else:
+                sub_page_params = {'edit': 1, 'position': 'last-child', 'target': self.parent_page_id}
 
             # Rich page urls
             rich_page_add_url = reverse(RICHPAGE_MENU_ADD) + '?extended_object=%s' % self.title_page.pk
