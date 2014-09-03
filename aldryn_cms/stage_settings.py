@@ -119,8 +119,6 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-	#'aldryn_blog',
-	#'aldryn_common',
     'djangocms_admin_style',
     'djangocms_text_ckeditor',
     'django.contrib.auth',
@@ -132,8 +130,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.messages',
     	'djangocms_text_ckeditor',
-	#'polls',
-	#'djangocms_polls',
 	'cms',
     'mptt',
     'menus',
@@ -167,11 +163,7 @@ INSTALLED_APPS = (
 	'filer',
 	'taggit',
 	'easy_thumbnails',
-	'polls',
-	'djangocms_polls',
-    'rich_collection',
-    'rich_page',
-	#'aldryn_rich_page'
+	'rich_page'
 )
 
 HAYSTACK_ROUTERS = ["aldryn_search.router.LanguageRouter",]
@@ -262,7 +254,7 @@ THUMBNAIL_PROCESSORS = (
 DATABASES = {
         'default': {
                 'ENGINE' : 'django.db.backends.postgresql_psycopg2',
-                'NAME': 'aldryn_db',
+                'NAME': 'db_stage',
                 'USER': 'ernesto',
                 'PASSWORD':'ernesto',
                 'HOST': 'localhost',
@@ -271,5 +263,4 @@ DATABASES = {
 }
 
 EMAIL_HOST = 'localhost'
-
 
