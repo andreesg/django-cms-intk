@@ -61,8 +61,8 @@ class RichPageToolbar(CMSToolbar):
         #
         # Remove default menu
         #
-        self.page_menu = self.toolbar.get_or_create_menu('page')
-        self.toolbar.remove_item(self.page_menu)
+        #self.page_menu = self.toolbar.get_or_create_menu('page')
+        #self.toolbar.remove_item(self.page_menu)
 
         #
         # check global permissions
