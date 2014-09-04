@@ -5,7 +5,9 @@ def get_subpage_content_from_page(page, language=None):
 
     children = page.get_children()
     for child in children:
-        plugins.append({'instance':child, 'plugins':child.placeholders.get(slot="content").get_plugins(language).order_by('-position').reverse()})
+        child_plugins = child.placeholders.get(slot="content").get_plugins(language).order_by('-position').reverse()
+        if len(child_plugins):
+            plugins.append({'instance':child, 'plugins': child_plugins})
 
     return plugins
         
