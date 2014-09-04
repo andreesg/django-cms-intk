@@ -30,7 +30,6 @@ RICHPAGE_MENU_DELETE = 'admin:rich_page_richpage_delete'
 @toolbar_pool.register
 class RichPageToolbar(CMSToolbar):
     def populate(self):
-        print "populate"
         # always use draft if we have a page
         self.page = get_page_draft(self.request.current_page)
 
