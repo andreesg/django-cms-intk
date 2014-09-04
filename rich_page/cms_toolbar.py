@@ -50,19 +50,8 @@ class RichPageToolbar(CMSToolbar):
         try:
             self.title_page = self.page.title_set.get(language=self.lang)
         except:
-            # Nothing to do
-            #
-            # Remove default menu
-            #
-            self.page_menu = self.toolbar.get_or_create_menu('page')
-            self.toolbar.remove_item(self.page_menu)
             return
 
-        #
-        # Remove default menu
-        #
-        #self.page_menu = self.toolbar.get_or_create_menu('page')
-        #self.toolbar.remove_item(self.page_menu)
 
         #
         # check global permissions
@@ -74,7 +63,12 @@ class RichPageToolbar(CMSToolbar):
 
         can_change = self.request.current_page and self.request.current_page.has_change_permission(self.request)
 
-        if has_global_current_page_change_permission or can_change:
+        if not self.request.user.is_superuser:
+            #
+            # Remove default menu
+            #
+            self.page_menu = self.toolbar.get_or_create_menu('page')
+            self.toolbar.remove_item(self.page_menu)
             # Page urls
 
             page_url = reverse(PAGE_MENU_ADD)
