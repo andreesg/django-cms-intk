@@ -11,7 +11,7 @@ class Migration(SchemaMigration):
         # Adding model 'SimpleText'
         db.create_table(u'djangocms_simpletext_simpletext', (
             (u'cmsplugin_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.CMSPlugin'], unique=True, primary_key=True)),
-            ('text', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
+            ('description', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
         ))
         db.send_create_signal(u'djangocms_simpletext', ['SimpleText'])
 
@@ -46,7 +46,7 @@ class Migration(SchemaMigration):
         u'djangocms_simpletext.simpletext': {
             'Meta': {'object_name': 'SimpleText', '_ormbases': ['cms.CMSPlugin']},
             u'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
-            'text': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'})
+            'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'})
         }
     }
 
