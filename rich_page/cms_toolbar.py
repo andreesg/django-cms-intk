@@ -44,7 +44,6 @@ class RichPageToolbar(CMSToolbar):
             return
 
         self.lang = get_language_from_request(self.request)
-        self.parent_page_id = self.page.parent_id 
 
         try:
             self.title_page = self.page.title_set.get(language=self.lang)
@@ -74,10 +73,7 @@ class RichPageToolbar(CMSToolbar):
 
             delete_page_url = reverse(PAGE_MENU_DELETE, args=(self.page.pk,))
             
-            if not self.parent_page_id:
-                sub_page_params = {'edit': 1, 'position': 'last-child', 'target': self.page.pk}
-            else:
-                sub_page_params = {'edit': 1, 'position': 'last-child', 'target': self.parent_page_id}
+            sub_page_params = {'edit': 1, 'position': 'last-child', 'target': self.page.pk}
 
             # Rich page urls
             rich_page_add_url = reverse(RICHPAGE_MENU_ADD) + '?extended_object=%s' % self.title_page.pk

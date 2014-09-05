@@ -2,7 +2,8 @@
 <div class="row">
 <h1>{% trans instance.name %}</h1>
 {% for subpage in list_plugins %}
-    <!--<h2><a href="{{ subpage.instance.get_absolute_url }}">{% render_model subpage.instance "title" %}</a></h2>-->
+    <h3><a href="{{ subpage.instance.get_absolute_url }}">{% render_model subpage.instance "title" %}</a></h3>
+    <p></p>
     {% for plugin in subpage.plugins %}
         {% render_plugin plugin %}
     {% endfor %}

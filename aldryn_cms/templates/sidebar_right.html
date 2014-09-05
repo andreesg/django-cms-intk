@@ -18,7 +18,8 @@
     </div>
     <aside class="medium-17 medium-pull-7 column sidebar">
         {% block content %}
-        {% with 660 as width %}{% placeholder content %}{% endwith %}
+        {% with 660 as width %}<h1>{% render_model request.current_page "title" "title, menu_title" %}</h1>{% endwith %}
+        {% with 660 as width %} {% placeholder content %}{% endwith %}
         {% endblock content %}
     </aside>
 </div>
