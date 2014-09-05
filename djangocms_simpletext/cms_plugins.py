@@ -11,8 +11,10 @@ class SimpleTextPlugin(CMSPluginBase):
     render_template = "djangocms_simpletext/base.html"
 
     def render(self, context, instance, placeholder):
-        context['instance'] = instance
-        request = context["request"]
+        context.update({
+            'object': instance,
+            'placeholder': placeholder
+        })
         return context
         
 plugin_pool.register_plugin(SimpleTextPlugin)

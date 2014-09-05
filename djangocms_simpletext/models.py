@@ -7,11 +7,9 @@ from django.db import models
     
 @python_2_unicode_compatible
 class SimpleText(CMSPlugin):
-    text = models.TextField(_('Text'), blank=True, null=True)
-
-    search_fields = ('text',)
+    description = models.TextField(_('SimpleText'), blank=True, null=True)
 
     def __str__(self):
-        return self.text
+        return self.description
 
 

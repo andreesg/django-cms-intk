@@ -1,2 +1,6 @@
 {% load i18n cms_tags %}
-<p>{{ instance.text }}</p>
+{% if object.description %}
+<div class="row">
+{{ object.description }}
+</div>
+{% endif %}
