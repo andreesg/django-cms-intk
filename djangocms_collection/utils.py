@@ -8,7 +8,9 @@ def get_subpage_content_from_page(page, language=None):
         child_plugins = child.placeholders.get(slot="content").get_plugins(language).order_by('-position').reverse()
         
         if len(child_plugins) > 0:
-            # TODO Bad code
+            #
+            # TODO
+            #
             try:
                 picture = child_plugins[0]
                 description = child_plugins[1]
