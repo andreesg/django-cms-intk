@@ -8,10 +8,12 @@ def get_subpage_content_from_page(page, language=None):
         child_plugins = child.placeholders.get(slot="content").get_plugins(language).order_by('-position').reverse()
         
         if len(child_plugins) > 0:
-            # TODO Bad code
+            # TODO
             try:
-                picture = child_plugins[0]
-                description = child_plugins[1]
+                filer_plugin = child_plugins.filter(plugin_type='FilerImagePlugin')[0]
+                simpletext_plugin = child_plugins.filter(plugin_type='SimpleTextPlugin')[0]
+                picture = filer_plugin.get_plugin_instance()[0].image
+                description = simpletext_plugin
                 plugins.append({'instance':child, 'picture': picture, 'description': description})
             except:
                 pass

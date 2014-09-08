@@ -1,20 +1,24 @@
-{% load i18n cms_tags %}
+{% load i18n cms_tags thumbnail %}
 <div class="app app-blog">
     <div class="blog-list">
         <ul class="blog-items">
             {% for subpage in list_plugins %}
-            <li align="center">
-                <p><a href="{{ subpage.instance.get_absolute_url }}">{% render_plugin subpage.picture %}</a></p>
+            <li>
+                {% if subpage.picture %}<p class="blog-visual"><img src="{% thumbnail subpage.picture.image 60x60 crop subject_location=subpage.picture.image.subject_location %}" alt="" /></p>{% endif %}
+
                 <h3><a href="{{ subpage.instance.get_absolute_url }}">{% render_model subpage.instance "title" %}</a></h3>
                 
-                <div class="blog-lead">
-                    {% render_plugin subpage.description %}
-                </div>
-                <!--<p class="blog-more"><a href="{{ subpage.instance.get_absolute_url }}">read more</a></p>-->
-                <p class="blog-meta"><small>
+                {% block blog_meta %}
+                <p class="blog-meta">
                     <span class="blog-date">{{ subpage.instance.publication_date }}</span>
                     <span class="blog-author">{% trans "by" %} {{ subpage.instance.created_by }}</span></small>
                 </p>
+                {% endblock %}
+
+                <div class="blog-lead">
+                    {% render_plugin subpage.description %}
+                </div>
+                <p class="blog-more"><a href="{{ subpage.instance.get_absolute_url }}">{% trans "read more" %}</a></p>
             </li>
             {% endfor %}
         </ul>
